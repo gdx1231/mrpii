@@ -1,0 +1,97 @@
+*       *********************************************************
+*       *                                                         
+*       * 10/10/99              RKBZ.MPR                09:50:11  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * 作者姓名                                                
+*       *                                                         
+*       * 版权(C) 1999 公司名                               
+*       * 地址                                                    
+*       * 城市,     邮政编码                                      
+*       * 国家/地区                                         
+*       *                                                         
+*       * 说明：                                            
+*       * 本程序由 GENMENU 自动生成。    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                         菜单定义                        
+*       *                                                         
+*       *********************************************************
+*
+
+DEFINE POPUP 快捷菜单 SHORTCUT RELATIVE FROM MROW(),MCOL()
+DEFINE BAR 1 OF 快捷菜单 PROMPT "按令号排序"
+DEFINE BAR 2 OF 快捷菜单 PROMPT "按代号排序"
+DEFINE BAR 3 OF 快捷菜单 PROMPT "按加工单位排序"
+ON SELECTION BAR 1 OF 快捷菜单 ;
+	DO _s940l2zr6 ;
+	IN LOCFILE("MRPII\RKBZ" ,"MPX;MPR|FXP;PRG" ,"WHERE 是 RKBZ?")
+ON SELECTION BAR 2 OF 快捷菜单 ;
+	DO _s940l2zra ;
+	IN LOCFILE("MRPII\RKBZ" ,"MPX;MPR|FXP;PRG" ,"WHERE 是 RKBZ?")
+ON SELECTION BAR 3 OF 快捷菜单 ;
+	DO _s940l2zre ;
+	IN LOCFILE("MRPII\RKBZ" ,"MPX;MPR|FXP;PRG" ,"WHERE 是 RKBZ?")
+
+ACTIVATE POPUP 快捷菜单
+
+*       *********************************************************
+*       *                                                         
+*       * _S940L2ZR6  ON SELECTION BAR 1 OF POPUP 快捷菜单        
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  RKBZ.MPR,            Record:    5           
+*       * Called By:  ON SELECTION BAR 1 OF POPUP 快捷菜单        
+*       * Prompt:     按令号排序                                  
+*       * Snippet:    1                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _s940l2zr6
+Select RKBZ
+Set Order To 令号
+入库不足查询.Grid1.Refresh
+
+
+*       *********************************************************
+*       *                                                         
+*       * _S940L2ZRA  ON SELECTION BAR 2 OF POPUP 快捷菜单        
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  RKBZ.MPR,            Record:    6           
+*       * Called By:  ON SELECTION BAR 2 OF POPUP 快捷菜单        
+*       * Prompt:     按代号排序                                  
+*       * Snippet:    2                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _s940l2zra
+Select RKBZ
+Set Order To 代号
+入库不足查询.Grid1.Refresh
+
+
+*       *********************************************************
+*       *                                                         
+*       * _S940L2ZRE  ON SELECTION BAR 3 OF POPUP 快捷菜单        
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  RKBZ.MPR,            Record:    7           
+*       * Called By:  ON SELECTION BAR 3 OF POPUP 快捷菜单        
+*       * Prompt:     按加工单位排序                              
+*       * Snippet:    3                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _s940l2zre
+Select RKBZ
+Set Order To 加工单位
+入库不足查询.Grid1.Refresh

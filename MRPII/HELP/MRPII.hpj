@@ -1,0 +1,5 @@
+[OPTIONS]
+HCW=0
+LCID=0x804 0x0 0x0 ;中文(中国)
+REPORT=Yes
+HLP=.\MRPII.hlp

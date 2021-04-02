@@ -1,0 +1,78 @@
+*       *********************************************************
+*       *                                                         
+*       * 08/13/03              MAIN.MPR                17:53:31  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * 郭磊                                                    
+*       *                                                         
+*       * 版权(C) 2003 北京单双色胶印机制造分公司           
+*       * 通州区新华大街12号                                      
+*       * 北京,     101149                                        
+*       * 中华人民共和国                                    
+*       *                                                         
+*       * 说明：                                            
+*       * 本程序由 GENMENU 自动生成。    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                         菜单定义                        
+*       *                                                         
+*       *********************************************************
+*
+
+SET SYSMENU TO
+SET SYSMENU AUTOMATIC
+
+DEFINE PAD _10u12cjxa OF _MSYSMENU PROMPT "文件(\<F)" COLOR SCHEME 3 ;
+	KEY ALT+F, ""
+DEFINE PAD _10u12cjxb OF _MSYSMENU PROMPT "出入库(\<C)" COLOR SCHEME 3 ;
+	KEY ALT+C, "" ;
+	SKIP FOR empty(cOpr)
+DEFINE PAD _10u12cjxk OF _MSYSMENU PROMPT "数据管理(\<G)" COLOR SCHEME 3 ;
+	KEY ALT+G, "" ;
+	SKIP FOR empty(copr)
+DEFINE PAD _10u12cjxl OF _MSYSMENU PROMPT "关于(\<A)" COLOR SCHEME 3 ;
+	KEY ALT+A, ""
+ON PAD _10u12cjxa OF _MSYSMENU ACTIVATE POPUP _s960xnwu1
+ON PAD _10u12cjxb OF _MSYSMENU ACTIVATE POPUP 出入库c
+ON PAD _10u12cjxk OF _MSYSMENU ACTIVATE POPUP 数据管理g
+ON PAD _10u12cjxl OF _MSYSMENU ACTIVATE POPUP 关于a
+
+DEFINE POPUP _s960xnwu1 MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF _s960xnwu1 PROMPT "登录(\<L)" ;
+	SKIP FOR !Empty(cOpr)
+DEFINE BAR 2 OF _s960xnwu1 PROMPT "注销" ;
+	SKIP FOR empty(cOpr)
+DEFINE BAR 3 OF _s960xnwu1 PROMPT "修改口令" ;
+	SKIP FOR !Empty(cOpr)
+DEFINE BAR 4 OF _s960xnwu1 PROMPT "\-"
+DEFINE BAR 5 OF _s960xnwu1 PROMPT "退出(\<X)" ;
+	KEY ALT+F4, "ALT+F4"
+ON SELECTION BAR 1 OF _s960xnwu1 do form kl
+ON SELECTION BAR 2 OF _s960xnwu1 cOpr=''
+ON SELECTION BAR 3 OF _s960xnwu1 do form 修改口令
+ON SELECTION BAR 5 OF _s960xnwu1 quit
+
+DEFINE POPUP 出入库c MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF 出入库c PROMPT "入零件库"
+DEFINE BAR 2 OF 出入库c PROMPT "出库管理"
+DEFINE BAR 3 OF 出入库c PROMPT "\-"
+DEFINE BAR 4 OF 出入库c PROMPT "凭证作废"
+DEFINE BAR 5 OF 出入库c PROMPT "\-"
+DEFINE BAR 6 OF 出入库c PROMPT "出入库记录查询"
+ON SELECTION BAR 1 OF 出入库c do form rkgl
+ON SELECTION BAR 2 OF 出入库c do form ckgl
+ON SELECTION BAR 4 OF 出入库c do form zfpzh
+ON SELECTION BAR 6 OF 出入库c do form pzhcxfs
+
+DEFINE POPUP 数据管理g MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF 数据管理g PROMPT "库存查询"
+ON SELECTION BAR 1 OF 数据管理g do form cx
+
+DEFINE POPUP 关于a MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF 关于a PROMPT "关于..."
+ON SELECTION BAR 1 OF 关于a do form about

@@ -1,0 +1,132 @@
+*       *********************************************************
+*       *                                                         
+*       * 08/13/03              MAIN.MPR                17:48:36  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * 郭磊                                                    
+*       *                                                         
+*       * 版权(C) 2003 北京单双色胶印机制造分公司           
+*       * 通州区新华大街12号                                      
+*       * 北京,     101149                                        
+*       * 中华人民共和国                                    
+*       *                                                         
+*       * 说明：                                            
+*       * 本程序由 GENMENU 自动生成。    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                         菜单定义                        
+*       *                                                         
+*       *********************************************************
+*
+
+SET SYSMENU TO
+SET SYSMENU AUTOMATIC
+
+DEFINE PAD _10u1268vj OF _MSYSMENU PROMPT "文件(\<F)" COLOR SCHEME 3 ;
+	KEY ALT+F, ""
+DEFINE PAD _10u1268vk OF _MSYSMENU PROMPT "汇总盘点(\<H)" COLOR SCHEME 3 ;
+	KEY ALT+H, "" ;
+	SKIP FOR empty(copr)
+DEFINE PAD _10u1268vl OF _MSYSMENU PROMPT "数据管理(\<G)" COLOR SCHEME 3 ;
+	KEY ALT+G, "" ;
+	SKIP FOR empty(copr)
+DEFINE PAD _10u1268vm OF _MSYSMENU PROMPT "趴帐管理(\<P)" COLOR SCHEME 3 ;
+	KEY ALT+P, "" ;
+	SKIP FOR empty(copr)
+DEFINE PAD _10u1268vn OF _MSYSMENU PROMPT "关于(\<A)" COLOR SCHEME 3 ;
+	KEY ALT+A, ""
+ON PAD _10u1268vj OF _MSYSMENU ACTIVATE POPUP _s960xnwu1
+ON PAD _10u1268vk OF _MSYSMENU ACTIVATE POPUP 汇总盘点h
+ON PAD _10u1268vl OF _MSYSMENU ACTIVATE POPUP 数据管理g
+ON PAD _10u1268vm OF _MSYSMENU ACTIVATE POPUP 趴帐管理p
+ON PAD _10u1268vn OF _MSYSMENU ACTIVATE POPUP 关于a
+
+DEFINE POPUP _s960xnwu1 MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF _s960xnwu1 PROMPT "登录(\<L)" ;
+	SKIP FOR !Empty(cOpr)
+DEFINE BAR 2 OF _s960xnwu1 PROMPT "注销" ;
+	SKIP FOR empty(cOpr)
+DEFINE BAR 3 OF _s960xnwu1 PROMPT "\-"
+DEFINE BAR 4 OF _s960xnwu1 PROMPT "修改口令"
+DEFINE BAR 5 OF _s960xnwu1 PROMPT "\-"
+DEFINE BAR 6 OF _s960xnwu1 PROMPT "退出(\<X)" ;
+	KEY ALT+F4, "ALT+F4"
+ON SELECTION BAR 1 OF _s960xnwu1 do form kl
+ON SELECTION BAR 2 OF _s960xnwu1 cOpr=''
+ON SELECTION BAR 4 OF _s960xnwu1 do form 修改口令
+ON SELECTION BAR 6 OF _s960xnwu1 quit
+
+DEFINE POPUP 汇总盘点h MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF 汇总盘点h PROMPT "出入库汇总"
+DEFINE BAR 2 OF 汇总盘点h PROMPT "出入库汇总_1.0001"
+DEFINE BAR 3 OF 汇总盘点h PROMPT "成本变动入库查询"
+DEFINE BAR 4 OF 汇总盘点h PROMPT "\-"
+DEFINE BAR 5 OF 汇总盘点h PROMPT "库工汇总"
+DEFINE BAR 6 OF 汇总盘点h PROMPT "删除库工"
+DEFINE BAR 7 OF 汇总盘点h PROMPT "新增库工"
+DEFINE BAR 8 OF 汇总盘点h PROMPT "库工调整"
+DEFINE BAR 9 OF 汇总盘点h PROMPT "转换库工"
+DEFINE BAR 10 OF 汇总盘点h PROMPT "\-"
+DEFINE BAR 11 OF 汇总盘点h PROMPT "盘点"
+DEFINE BAR 12 OF 汇总盘点h PROMPT "盘点_1.0001"
+ON SELECTION BAR 1 OF 汇总盘点h do form 零件出入库汇总.scx
+ON SELECTION BAR 2 OF 汇总盘点h do form 零件出入库汇总_1.scx
+ON SELECTION BAR 3 OF 汇总盘点h do form 成本变动入库查询.scx
+ON SELECTION BAR 5 OF 汇总盘点h do form 汇总库工
+ON SELECTION BAR 6 OF 汇总盘点h do form 删除库工
+ON SELECTION BAR 7 OF 汇总盘点h do form 新增库工
+ON SELECTION BAR 8 OF 汇总盘点h do form 库工调整.scx
+ON SELECTION BAR 9 OF 汇总盘点h do form 转换库工.scx
+ON SELECTION BAR 11 OF 汇总盘点h do form 盘点
+ON SELECTION BAR 12 OF 汇总盘点h do form 盘点_1
+
+DEFINE POPUP 数据管理g MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF 数据管理g PROMPT "库存查询"
+DEFINE BAR 2 OF 数据管理g PROMPT "凭证查询"
+DEFINE BAR 3 OF 数据管理g PROMPT "\-"
+DEFINE BAR 4 OF 数据管理g PROMPT "调帐"
+DEFINE BAR 5 OF 数据管理g PROMPT "\-"
+DEFINE BAR 6 OF 数据管理g PROMPT "零部件调整"
+DEFINE BAR 7 OF 数据管理g PROMPT "部件管理"
+DEFINE BAR 8 OF 数据管理g PROMPT "\-"
+DEFINE BAR 9 OF 数据管理g PROMPT "产品完工"
+DEFINE BAR 10 OF 数据管理g PROMPT "修改新增外协单位"
+DEFINE BAR 11 OF 数据管理g PROMPT "\-"
+DEFINE BAR 12 OF 数据管理g PROMPT "修改凭证批次"
+DEFINE BAR 13 OF 数据管理g PROMPT "修改凭证单位"
+ON SELECTION BAR 1 OF 数据管理g do form cx
+ON SELECTION BAR 2 OF 数据管理g do form pzhcxfs
+ON SELECTION BAR 4 OF 数据管理g do form 调帐
+ON SELECTION BAR 6 OF 数据管理g do form xgzk
+ON SELECTION BAR 7 OF 数据管理g do form 部件管理
+ON SELECTION BAR 9 OF 数据管理g do form 产品完工
+ON SELECTION BAR 10 OF 数据管理g do form 外协单位
+ON SELECTION BAR 12 OF 数据管理g do form 更改批次
+ON SELECTION BAR 13 OF 数据管理g do form 更改单位
+
+DEFINE POPUP 趴帐管理p MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF 趴帐管理p PROMPT "趴帐处理(\<P)"
+DEFINE BAR 2 OF 趴帐管理p PROMPT "趴帐打印"
+DEFINE BAR 3 OF 趴帐管理p PROMPT "趴帐作废"
+DEFINE BAR 4 OF 趴帐管理p PROMPT "趴帐查询"
+DEFINE BAR 5 OF 趴帐管理p PROMPT "\-"
+DEFINE BAR 6 OF 趴帐管理p PROMPT "趴帐数据汇总"
+DEFINE BAR 7 OF 趴帐管理p PROMPT "\-"
+DEFINE BAR 8 OF 趴帐管理p PROMPT "外协员管理"
+DEFINE BAR 9 OF 趴帐管理p PROMPT "上月未达凭证号输入"
+ON SELECTION BAR 1 OF 趴帐管理p do form 趴帐处理
+ON SELECTION BAR 2 OF 趴帐管理p do form 趴帐打印
+ON SELECTION BAR 3 OF 趴帐管理p do form 趴帐作废
+ON SELECTION BAR 4 OF 趴帐管理p do form 趴帐查询
+ON SELECTION BAR 6 OF 趴帐管理p do form 外协点汇总
+ON SELECTION BAR 8 OF 趴帐管理p do form 外协员管理
+ON SELECTION BAR 9 OF 趴帐管理p do form 上月未达凭证号输入.scx
+
+DEFINE POPUP 关于a MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF 关于a PROMPT "关于..."
+ON SELECTION BAR 1 OF 关于a do form about

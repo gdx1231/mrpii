@@ -1,0 +1,102 @@
+*       *********************************************************
+*       *                                                         
+*       * 10/10/99              MAIN.MPR                09:50:09  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * 作者姓名                                                
+*       *                                                         
+*       * 版权(C) 1999 公司名                               
+*       * 地址                                                    
+*       * 城市,     邮政编码                                      
+*       * 国家/地区                                         
+*       *                                                         
+*       * 说明：                                            
+*       * 本程序由 GENMENU 自动生成。    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                         菜单定义                        
+*       *                                                         
+*       *********************************************************
+*
+
+SET SYSMENU TO
+SET SYSMENU AUTOMATIC
+
+DEFINE PAD _s940l2xv8 OF _MSYSMENU PROMPT "文件(\<F)" COLOR SCHEME 3 ;
+	KEY ALT+F, ""
+DEFINE PAD _s940l2xva OF _MSYSMENU PROMPT "指令(\<Z)" COLOR SCHEME 3 ;
+	KEY ALT+Z, "" ;
+	SKIP FOR empty(cOpr)
+DEFINE PAD _s940l2xvb OF _MSYSMENU PROMPT "产品管理(\<C)" COLOR SCHEME 3 ;
+	KEY ALT+C, "" ;
+	SKIP FOR empty(cOpr)
+DEFINE PAD _s940l2xvc OF _MSYSMENU PROMPT "库房(\<K)" COLOR SCHEME 3 ;
+	KEY ALT+K, "" ;
+	SKIP FOR empty(cOpr)
+DEFINE PAD _s940l2xvd OF _MSYSMENU PROMPT "帮助(\<H)" COLOR SCHEME 3 ;
+	KEY ALT+H, ""
+ON PAD _s940l2xv8 OF _MSYSMENU ACTIVATE POPUP 文件f
+ON PAD _s940l2xva OF _MSYSMENU ACTIVATE POPUP 指令z
+ON PAD _s940l2xvb OF _MSYSMENU ACTIVATE POPUP 产品管理c
+ON PAD _s940l2xvc OF _MSYSMENU ACTIVATE POPUP 库房k
+ON PAD _s940l2xvd OF _MSYSMENU ACTIVATE POPUP 帮助h
+
+DEFINE POPUP 文件f MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF 文件f PROMPT "登录"
+DEFINE BAR 2 OF 文件f PROMPT "注销"
+DEFINE BAR 3 OF 文件f PROMPT "修改口令"
+DEFINE BAR 4 OF 文件f PROMPT "\-"
+DEFINE BAR 5 OF 文件f PROMPT "设置当前打印机"
+DEFINE BAR 6 OF 文件f PROMPT "\-"
+DEFINE BAR 7 OF 文件f PROMPT "退出(\<X)" ;
+	KEY ALT+F4, "ALT+F4"
+ON SELECTION BAR 1 OF 文件f do form 口令
+ON SELECTION BAR 2 OF 文件f do zx
+ON SELECTION BAR 3 OF 文件f do form 修改口令
+ON SELECTION BAR 5 OF 文件f set printer to name getprinter()
+ON SELECTION BAR 7 OF 文件f quit
+
+DEFINE POPUP 指令z MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF 指令z PROMPT "生产指令"
+DEFINE BAR 2 OF 指令z PROMPT "零散生产指令"
+DEFINE BAR 3 OF 指令z PROMPT "组装指令"
+DEFINE BAR 4 OF 指令z PROMPT "\-"
+DEFINE BAR 5 OF 指令z PROMPT "生产/组装指令查询"
+DEFINE BAR 6 OF 指令z PROMPT "出入库查询"
+DEFINE BAR 7 OF 指令z PROMPT "\-"
+DEFINE BAR 8 OF 指令z PROMPT "指令作废"
+ON SELECTION BAR 1 OF 指令z do form 生产指令
+ON SELECTION BAR 2 OF 指令z do form 零散生产指令
+ON SELECTION BAR 3 OF 指令z do form 组装指令
+ON SELECTION BAR 5 OF 指令z do form 生产组装指令查询
+ON SELECTION BAR 6 OF 指令z do form 出入库查询
+ON SELECTION BAR 8 OF 指令z do form 指令作废
+
+DEFINE POPUP 产品管理c MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF 产品管理c PROMPT "产品信息管理"
+DEFINE BAR 2 OF 产品管理c PROMPT "产品加工顺序"
+ON SELECTION BAR 1 OF 产品管理c do form 产品信息管理
+ON SELECTION BAR 2 OF 产品管理c do form 产品加工顺序
+
+DEFINE POPUP 库房k MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF 库房k PROMPT "库存查询"
+DEFINE BAR 2 OF 库房k PROMPT "\-"
+DEFINE BAR 3 OF 库房k PROMPT "入库不足查询"
+DEFINE BAR 4 OF 库房k PROMPT "\-"
+DEFINE BAR 5 OF 库房k PROMPT "入库废品查询"
+DEFINE BAR 6 OF 库房k PROMPT "出库废品查询"
+ON SELECTION BAR 1 OF 库房k do form 库存查询
+ON SELECTION BAR 3 OF 库房k do form 入库不足查询
+ON SELECTION BAR 5 OF 库房k do form 入库废品查询
+ON SELECTION BAR 6 OF 库房k do form 出库废品查询
+
+DEFINE POPUP 帮助h MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF 帮助h PROMPT "生产管理帮助主题"
+DEFINE BAR 2 OF 帮助h PROMPT "\-"
+DEFINE BAR 3 OF 帮助h PROMPT "关于本产品"
+ON SELECTION BAR 3 OF 帮助h do form 关于
